@@ -251,6 +251,7 @@ const player = new Player()
 const projectiles = []
 const grids = []
 const invaderProjectiles = []
+const particles = []
 
 const keys = {
     a: {
@@ -272,6 +273,9 @@ function animate(){
     c.fillStyle = 'black'
     c.fillRect(0, 0, canvas.width, canvas.height)
     player.update()
+    particles.forEach(particle => {
+        particle.update()
+    })
 
     invaderProjectiles.forEach((invaderProjectile, index) => {
         if (invaderProjectile.position.y + invaderProjectile.height >= canvas.height){
@@ -305,6 +309,7 @@ function animate(){
             grid.invaders[Math.floor(Math.random() * grid.invaders.length)].shoot(invaderProjectiles)
         }
 
+        // Projectiles hit enemy
         grid.invaders.forEach((invader, i) => {
             invader.update({velocity: grid.velocity})
 
@@ -318,6 +323,20 @@ function animate(){
                     && 
                     projectile.position.y + projectile.radius >= invader.position.y
                 ){
+                    particles.push(new Particle({
+                        position: {
+                            x: invader.position.x + invader.width/2,
+                            y: invader.position.y + invader.width/2
+                        },
+                        velocity: {
+                            x: 2,
+                            y: 2
+                        },
+                        radius: 10,
+                        color: 'yellow'
+                    }))
+
+
                     setTimeout(() => {
                         const invaderFound = grid.invaders.find(invader2 => {
                             return invader2 === invader
