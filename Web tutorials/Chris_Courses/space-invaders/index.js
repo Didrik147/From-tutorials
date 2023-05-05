@@ -2,7 +2,6 @@
 https://www.youtube.com/watch?v=MCVU0w73uKI
  */
 
-/* Currently at 1:33:20 */
 
 const canvas = document.querySelector('canvas')
 
@@ -98,6 +97,33 @@ class Projectile {
         this.position.y += this.velocity.y
     }
 }
+
+
+class Particle {
+    constructor({ position, velocity, radius, color }){
+        this.position = position
+        this.velocity = velocity
+
+        this.radius = radius
+        this.color = color
+    }
+
+    draw(){
+        c.beginPath()
+        c.arc(this.position.x, this.position.y, this.radius, 0, 2*Math.PI)
+        c.fillStyle = this.color
+        c.fill()
+        c.closePath()
+    }
+
+    update(){
+        this.draw()
+        this.position.x += this.velocity.x
+        this.position.y += this.velocity.y
+    }
+}
+
+
 
 class InvaderProjectile {
     constructor({position, velocity}){
@@ -247,8 +273,18 @@ function animate(){
     c.fillRect(0, 0, canvas.width, canvas.height)
     player.update()
 
-    invaderProjectiles.forEach(invaderProjectile => {
-        invaderProjectile.update()
+    invaderProjectiles.forEach((invaderProjectile, index) => {
+        if (invaderProjectile.position.y + invaderProjectile.height >= canvas.height){
+            setTimeout(() => {
+                invaderProjectiles.splice(index, 1)
+            }, 0)
+        }else {
+            invaderProjectile.update()
+
+            if (invaderProjectile.position.y + invaderProjectile.height >= player.position.y && invaderProjectile.position.x + invaderProjectile.width >= player.position.x && invaderProjectile.position.x <= player.position.x + player.width){
+                console.log('You lose')
+            }
+        }
     })
 
     projectiles.forEach((projectile, index) => {
