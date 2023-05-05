@@ -2,6 +2,8 @@
 https://www.youtube.com/watch?v=MCVU0w73uKI
  */
 
+/* Currently at 1:54:20 */
+
 
 const canvas = document.querySelector('canvas')
 
@@ -100,26 +102,32 @@ class Projectile {
 
 
 class Particle {
-    constructor({ position, velocity, radius, color }){
+    constructor({ position, velocity, radius, color, fades }){
         this.position = position
         this.velocity = velocity
 
         this.radius = radius
         this.color = color
+        this.opacity = 1
+        this.fades = fades
     }
 
     draw(){
+        c.save()
+        c.globalAlpha = this.opacity
         c.beginPath()
         c.arc(this.position.x, this.position.y, this.radius, 0, 2*Math.PI)
         c.fillStyle = this.color
         c.fill()
         c.closePath()
+        c.restore()
     }
 
     update(){
         this.draw()
         this.position.x += this.velocity.x
         this.position.y += this.velocity.y
+        if (this.fades) this.opacity -= 0.01
     }
 }
 
@@ -210,7 +218,7 @@ class Grid {
             y: 0
         }
         this.velocity = {
-            x: 3,
+            x: 4,
             y: 0
         }
 
@@ -268,13 +276,61 @@ const keys = {
 let frames = 0
 let randomInterval = Math.floor(Math.random()*500) + 500
 
+
+for(let i=0; i<100; i++){
+    particles.push(new Particle({
+        position: {
+            x: Math.random()*canvas.width,
+            y: Math.random()*canvas.height
+        },
+        velocity: {
+            x: 0,
+            y: 0.3
+        },
+        radius: Math.random()*2,
+        color: 'white'
+    }))
+}
+
+
+
+function createParticles({object, color, fades}){
+    for(let i=0; i<15; i++){
+        particles.push(new Particle({
+            position: {
+                x: object.position.x + object.width/2,
+                y: object.position.y + object.height/2
+            },
+            velocity: {
+                x: (Math.random() - 0.5)*4,
+                y: (Math.random() - 0.5)*4
+            },
+            radius: Math.random()*3,
+            color: color || '#BAA0DE',
+            fades: fades
+        }))
+    }
+}
+
+
 function animate(){
     requestAnimationFrame(animate)
     c.fillStyle = 'black'
     c.fillRect(0, 0, canvas.width, canvas.height)
     player.update()
-    particles.forEach(particle => {
-        particle.update()
+    particles.forEach((particle, i) => {
+        if (particle.position.y - particle.radius >= canvas.height){
+            particle.position.x = Math.random()*canvas.width
+            particle.position.y = -particle.radius
+        }
+
+        if (particle.opacity <= 0){
+            setTimeout(() => {
+                particles.splice(i, 1)
+            }, 0)   
+        }else {
+            particle.update()
+        }   
     })
 
     invaderProjectiles.forEach((invaderProjectile, index) => {
@@ -284,10 +340,19 @@ function animate(){
             }, 0)
         }else {
             invaderProjectile.update()
+        }
+        // Projectile hit player
+        if (invaderProjectile.position.y + invaderProjectile.height >= player.position.y && invaderProjectile.position.x + invaderProjectile.width >= player.position.x && invaderProjectile.position.x <= player.position.x + player.width){
+            setTimeout(() => {
+                invaderProjectiles.splice(index, 1)
+            }, 0)
 
-            if (invaderProjectile.position.y + invaderProjectile.height >= player.position.y && invaderProjectile.position.x + invaderProjectile.width >= player.position.x && invaderProjectile.position.x <= player.position.x + player.width){
-                console.log('You lose')
-            }
+            console.log('You lose')
+            createParticles({
+                object: player,
+                color: 'white',
+                fadess: true
+            })
         }
     })
 
@@ -323,20 +388,6 @@ function animate(){
                     && 
                     projectile.position.y + projectile.radius >= invader.position.y
                 ){
-                    particles.push(new Particle({
-                        position: {
-                            x: invader.position.x + invader.width/2,
-                            y: invader.position.y + invader.width/2
-                        },
-                        velocity: {
-                            x: 2,
-                            y: 2
-                        },
-                        radius: 10,
-                        color: 'yellow'
-                    }))
-
-
                     setTimeout(() => {
                         const invaderFound = grid.invaders.find(invader2 => {
                             return invader2 === invader
@@ -347,6 +398,11 @@ function animate(){
 
                         // Remove invader and projectiles
                         if (invaderFound && projectileFound){
+                            createParticles({
+                                object: invader,
+                                fades: true
+                            })
+
                             grid.invaders.splice(i, 1)
                             projectiles.splice(j, 1)
 
@@ -390,6 +446,7 @@ function animate(){
     }
 
     frames++
+    //console.log(frames)
 }
 
 animate()
