@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>CSS Grids</title>
+
+    <style>
+        .wrapper {
+            display: grid;
+            grid-template-columns: 70% 30%;
+            /*
+            grid-column-gap: 1em;
+            grid-row-gap: 1em;
+            */
+            
+            /* grid-column-gap og grid-row-gap kan kombineres som grip-gap */
+            grid-gap: 1em;
+
+        }
+
+        .wrapper > div{
+            background: #eee;
+            padding: 1em;
+        }
+
+        .wrapper > div:nth-child(odd){
+            background: #ddd;
+        }
+    </style>
+
+</head>
+<body>
+    <div class="wrapper">
+        <div>
+            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dolorum iste velit aliquid culpa fugit magnam totam. Veritatis quisquam natus, beatae ad impedit, dolorum deleniti nam asperiores libero atque quasi fugit harum nisi velit incidunt necessitatibus commodi, consectetur ex saepe aliquam eius. Quo aliquid, veritatis dolorum consequuntur ipsam velit asperiores voluptatum dolore voluptates a tenetur laborum deleniti veniam ipsum laboriosam aperiam? Id ut rem ipsum soluta nesciunt iste ab. Beatae quisquam exercitationem vero cupiditate eum ratione impedit dolore voluptates, soluta esse.
+        </div>
+        <div>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique accusantium tempore est reprehenderit debitis rerum sapiente, libero numquam dignissimos sequi iure suscipit ab voluptatem. Voluptates unde quibusdam molestias laudantium aliquam.
+        </div>
+        <div>
+            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dolorum iste velit aliquid culpa fugit magnam totam. Veritatis quisquam natus, beatae ad impedit, dolorum deleniti nam asperiores libero atque quasi fugit harum nisi velit incidunt necessitatibus commodi, consectetur ex saepe aliquam eius. Quo aliquid, veritatis dolorum consequuntur ipsam velit asperiores voluptatum dolore voluptates a tenetur laborum deleniti veniam ipsum laboriosam aperiam? Id ut rem ipsum soluta nesciunt iste ab. Beatae quisquam exercitationem vero cupiditate eum ratione impedit dolore voluptates, soluta esse.
+        </div>
+        <div>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique accusantium tempore est reprehenderit debitis rerum sapiente, libero numquam dignissimos sequi iure suscipit ab voluptatem. Voluptates unde quibusdam molestias laudantium aliquam.
+        </div>
+    </div>
+</body>
+</html>

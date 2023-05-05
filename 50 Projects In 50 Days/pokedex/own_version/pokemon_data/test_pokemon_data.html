@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pokemon data</title>
+</head>
+<body>
+    <h1>Pokemon data</h1>
+
+
+
+    <script>
+        function getPokemonFetch(id){
+            let url = `${id}.json`
+
+            fetch(url)
+                .then(res => res.json())
+                .then(pokemon => {
+                    console.log(pokemon.name)
+                })
+            }
+
+        
+        const getPokemonAsync = async (id) => {
+            const url = `https://pokeapi.co/api/v2/pokemon/${id}`
+            const res = await fetch(url)
+            const data = await res.json()
+            //console.log(data)
+            return data
+
+        }
+
+        getPokemonFetch(1);
+        
+
+    </script>
+</body>
+</html>

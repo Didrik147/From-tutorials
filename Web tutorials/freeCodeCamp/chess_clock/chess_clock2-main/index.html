@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="description" content="A chess timer built with Javascript, HTML, and CSS">
+    <meta name="author" content="Brandon Wallace">
+    <link rel="shortcut icon" href="images/favicon.ico">
+    <link rel="icon" type="image/png" href="images/favicon.png">
+    <link rel="stylesheet" href="css/style.css">
+    <title>chess clock</title>
+
+  </head>
+
+  <body>
+
+    <noscript>
+      <p style="color:#FC0000;text-align:center">Please enable Javascript to in order to use application.</p>
+    </noscript>
+
+    <main>
+    
+      <div class="player">
+      
+        <div class="player__tile player-1">
+          <div class="player__digits">
+            <span id="min1">10</span>:<span id="sec1">00</span>
+          </div>
+        </div>
+        
+        <div class="player__tile player-2">
+          <div class="player__digits">
+            <span id="min2">10</span>:<span id="sec2">00</span>
+          </div>
+        </div>
+        
+      </div>
+      
+      <div class="timer__buttons">
+        <button class="timer__start-bttn bttn" type="button">START</button>
+        <button class="timer__reset-bttn bttn" type="button">RESET</button>
+      </div>
+
+    </main>
+
+    <footer>
+
+      <p>Press spacebar or tap on timer after a move to switch player's clock.</p>
+
+    </footer>
+
+    <script src="js/script.js"></script>
+
+  </body>
+
+</html>
