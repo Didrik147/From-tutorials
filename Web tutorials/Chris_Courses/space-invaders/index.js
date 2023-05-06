@@ -2,18 +2,20 @@
 https://www.youtube.com/watch?v=MCVU0w73uKI
  */
 
-/* Currently at 1:54:20 */
 
 
+const scoreEl = document.querySelector('#scoreEl')
 const canvas = document.querySelector('canvas')
 
 // it is also common to use ctx as a name for this variable
 const c = canvas.getContext('2d')
 
 // Could use window.innerWidth, but it is not necessary
-canvas.width = innerWidth
-canvas.height = innerHeight
+//canvas.width = innerWidth
+//canvas.height = innerHeight
 
+canvas.width = 1024
+canvas.height = 576
 
 class Player {
     constructor(){
@@ -23,6 +25,7 @@ class Player {
         }
 
         this.rotation = 0
+        this.opacity = 1
 
         const image = new Image()
         image.src = './img/spaceship.png'
@@ -45,6 +48,7 @@ class Player {
         c.drawImage() */
 
         c.save()
+        c.globalAlpha = this.opacity
 
         c.translate(
             player.position.x + player.width/2, 
@@ -275,7 +279,12 @@ const keys = {
 
 let frames = 0
 let randomInterval = Math.floor(Math.random()*500) + 500
+let game = {
+    over: false,
+    active: true
+}
 
+let score = 0
 
 for(let i=0; i<100; i++){
     particles.push(new Particle({
@@ -314,6 +323,7 @@ function createParticles({object, color, fades}){
 
 
 function animate(){
+    if (!game.active) return
     requestAnimationFrame(animate)
     c.fillStyle = 'black'
     c.fillRect(0, 0, canvas.width, canvas.height)
@@ -343,11 +353,19 @@ function animate(){
         }
         // Projectile hit player
         if (invaderProjectile.position.y + invaderProjectile.height >= player.position.y && invaderProjectile.position.x + invaderProjectile.width >= player.position.x && invaderProjectile.position.x <= player.position.x + player.width){
+            console.log('You lose')
+            
             setTimeout(() => {
                 invaderProjectiles.splice(index, 1)
+                player.opacity = 0
+                game.over = true
             }, 0)
+            
+            setTimeout(() => {
+                game.active = false
+            }, 2000)
 
-            console.log('You lose')
+            
             createParticles({
                 object: player,
                 color: 'white',
@@ -398,6 +416,9 @@ function animate(){
 
                         // Remove invader and projectiles
                         if (invaderFound && projectileFound){
+                            score += 100
+                            scoreEl.innerHTML = score
+
                             createParticles({
                                 object: invader,
                                 fades: true
@@ -453,6 +474,8 @@ animate()
 
 addEventListener('keydown', ({ key }) => {
     //console.log(key)
+
+    if (game.over) return
 
     switch(key) {
         case 'a':
