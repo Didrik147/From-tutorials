@@ -22,9 +22,9 @@ body {
     /* min-height: 100vh; */
     background-color: #111;
     background-image: linear-gradient(
-        rgba(0,0,0,0.8), rgba(0,0,0,0.8)
+        rgba(0,0,0,0.9), rgba(0,0,0,0.9)
         ), 
-        url("https://images.unsplash.com/photo-1556075798-4825dfaaf498?auto=format&fit=crop&q=80&w=2076&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
+        url("./assets/github_1920.jpg");
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
