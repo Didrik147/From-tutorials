@@ -1,0 +1,312 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
+:root {
+    /* --primary: #41fc03; */
+    --primary: hsl(260, 100%, 70%);
+    --dark: #333;
+    --darker: #222;
+    --light: #fff;
+}
+
+* {
+    /* font-family: Arial, Helvetica, sans-serif; */
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    /* font-family: 'Poppins', sans-serif; */
+    text-decoration: none;
+    margin: 0;
+    padding: 0; 
+    box-sizing: border-box;
+}
+
+body {
+    /* min-height: 100vh; */
+    background-color: #111;
+    background-image: linear-gradient(
+        rgba(0,0,0,0.8), rgba(0,0,0,0.8)
+        ), 
+        url("https://images.unsplash.com/photo-1556075798-4825dfaaf498?auto=format&fit=crop&q=80&w=2076&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+
+/* Navbar */
+.navbar{
+    background: #1b1b1b;
+}
+
+.navbar:after{
+    content: '';
+    clear: both;
+    display: table;
+}
+
+.navbar .logo{
+    float: left;
+    color: var(--primary);
+    font-size: 27px;
+    font-weight: 600;
+    line-height: 70px;
+    /* padding-left: 60px; */
+    padding-left: 4%;
+    /* display: none; */
+}
+
+.navbar .logo a{
+    color: var(--primary);
+}
+
+
+.navbar ul{
+    float: right;
+    list-style: none;
+   /*  margin-right: 40px; */
+    position: relative;
+    z-index: 2;
+}
+
+
+.navbar ul li:last-of-type{
+    padding-right: 20px;
+}
+
+.navbar ul li{
+    float: left;
+
+    /* Trenger ikke denne? Siden vi har float: left?*/
+    /* display: inline-block; */
+
+    background: #1b1b1b;
+    margin: 0 10px;
+}
+
+.navbar ul li a{
+    color: white;
+    text-decoration: none;
+    line-height: 70px;
+    font-size: 16px;
+
+    padding: 9px 15px;
+}
+
+.navbar ul li a:hover{
+    color: var(--primary);
+    border-radius: 5px;
+    box-shadow: 0 0 5px var(--primary),
+                0 0 5px var(--primary);
+}
+
+.navbar ul ul li a:hover{
+    color: var(--primary);
+    box-shadow: none;
+}
+
+.navbar ul ul{
+    position: absolute;
+    top: 90px;
+    border-top: 3px solid var(--primary);
+    opacity: 0;
+    visibility: hidden;
+    transition: top .3s;
+}
+
+.navbar ul ul ul{
+    border-top: none;
+}
+
+.navbar ul li:hover > ul{
+    top: 70px;
+    opacity: 1;
+    visibility: visible;
+}
+
+.navbar ul ul li a{
+    line-height: 50px;
+}
+
+.navbar ul ul li{
+    position: relative;
+    margin: 0px;
+    float: none;
+    display: list-item;
+    border-bottom: 1px solid rgba(0,0,0, 0.3);
+}
+
+.navbar ul ul ul li{
+    position: relative;
+    top: -70px;
+    left: 150px;
+}
+
+.fa-plus{
+    margin-left: 40px;
+    font-size: 15px;
+}
+
+.show, .icon, input{
+    display: none;
+}
+
+
+
+.text-box {
+    margin: auto;
+    width: 95%;
+    color: var(--light);
+/*     position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%); */
+    text-align: center;
+}
+
+.text-box > section {
+    margin: 30px 0px;
+}
+
+
+.text-box h1{
+    font-size: 50px;
+}
+
+.text-box h3{
+    font-size: 20px;
+    margin: 10px 0px;
+}
+
+.text-box p{
+    font-size: 18px;
+    color: var(--light);
+    margin: 10px 0px;
+}
+
+.text-box > section > article {
+    margin: 30px 0px;
+}
+
+.text-box a{
+    display: inline-block;
+    color: var(--primary);
+    text-decoration: none;
+    border: 2px solid #fff;
+    padding: 2px 10px;
+    font-size: 25px;
+    border-radius: 5px;
+}
+
+.text-box a:hover{
+    color: #000;
+    background-color: var(--primary);
+}
+
+
+@media all and (max-width: 800px){
+    .text-box h1{
+        font-size: 36px;
+    }
+    .text-box h3{
+        font-size: 18px;
+    }
+    .text-box p{
+        font-size: 16px;
+    }
+    .navbar ul{
+        float: left;
+    }
+
+    /*
+    .navbar ul li{
+        display: inline-block;
+        width: 100%;
+    }
+    */
+
+    /*
+    .navbar .logo{
+        padding-left: 30px;
+        width: 100%;
+    }
+    */
+
+    .navbar ul li, .navbar ul ul li{
+        /* Vet ikke om det blir helt riktig å gjøre det på denne måten? */
+
+        /* display: block; */
+        width: 95vw;
+        margin: 0;
+        /* padding: top right bottom left */
+        /* padding: 0 10px; */
+        padding: 0 0 0 20px;
+        display: inline-block;
+    }
+    
+    
+    .navbar ul ul{
+        top: 70px;
+        position: static;
+        border-top: none;
+        float: none;
+        display: none;
+        opacity: 1;
+        visibility: visible;
+    }
+
+    .navbar ul ul ul li{
+        position: static;
+    }
+
+    .navbar ul ul li{
+        border-bottom: 0px;
+    }
+
+    .navbar ul ul a{
+        /* padding-left: 40px; */
+        padding-left: 20px;
+    }
+
+    #lab-btn-3{
+        padding-left: 50px;
+    }
+
+    .navbar ul ul ul a{
+        padding-left: 80px;
+    }
+
+    .show{
+        display: block;
+        color: white;
+        font-size: 18px;
+        padding: 0 20px;
+        line-height: 70px;
+        cursor: pointer;
+    }
+
+    .show:hover{
+        color: var(--primary);
+    }
+
+    .icon{
+        display: block;
+        color: white;
+        position: absolute;
+        right: 40px;
+        top: 25px;
+        line-height: 70px;
+        font-size: 25px;
+        cursor: pointer;
+    }
+
+    .navbar ul li a:hover{
+        box-shadow: none;
+    }
+
+    .show + a, ul{
+        display: none;
+    }
+
+    [id^=btn]:checked + ul{
+        display: block;
+    }
+    
+}
