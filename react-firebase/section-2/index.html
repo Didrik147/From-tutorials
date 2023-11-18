@@ -1,0 +1,49 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- React -->
+    <script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+
+    <!-- Babel -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <title>Document</title>
+</head>
+<body>
+    <h1>My website</h1>
+    
+    <div id="banner">
+
+    </div>
+
+    <footer>
+        <p>Footer</p>
+    </footer>
+
+    <script type="text/babel">
+        // React components should always start with capital letter
+        const Banner = () => {
+            const title = "Welcome to my website"
+            const subtitle = 'This is a website for learning React'
+            const address = 'https://www.netninja.dev'
+
+            return (
+                // Can only have one root element (?)
+                <div className='banner'>
+                    <h2>{title.toUpperCase()}</h2>
+                    <p>{subtitle}</p>
+                    <p>Today's date is: { new Date().toDateString() }</p>
+                    <p>Random number: { Math.random()*100 }</p>
+                    <a href={address}>Visit the Net Ninja site</a>
+                </div>
+            )
+        }
+
+        // Render the component to the DOM
+        ReactDOM.render(<Banner />, document.getElementById('banner'))
+    </script>
+</body>
+</html>

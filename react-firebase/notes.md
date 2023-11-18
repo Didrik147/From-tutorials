@@ -12,3 +12,8 @@ Single Page Application (SPA)
 - We only receive a single HTML page from the server
 
 Traditional HTML sites vs. React Sites (SPA)
+
+
+## Section 2
+
+React Components
