@@ -28,16 +28,7 @@
         const Banner = () => {
             const title = "Welcome to my website"
             const subtitle = 'This is a website for learning React'
-
-            // Naming convention: handleEvent
-            /* const handleClick = (e) => {
-                console.log('You clicked me')
-                console.log('The site title is:', title)
-
-                console.log(e)
-            } */
-
-            //<button onClick={handleClick}>Click me</button>
+            const address = 'https://www.netninja.dev'
 
             return (
                 // Can only have one root element (?)
@@ -45,8 +36,8 @@
                     <h2>{title.toUpperCase()}</h2>
                     <p>{subtitle}</p>
                     <p>Today's date is: { new Date().toDateString() }</p>
-
-                    <button onClick={(e) => console.log('hello')}>Click me</button>
+                    <p>Random number: { Math.random()*100 }</p>
+                    <a href={address}>Visit the Net Ninja site</a>
                 </div>
             )
         }
