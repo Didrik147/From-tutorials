@@ -27,3 +27,13 @@ React at a glance
 
 Command to create new React App:
 npx create-react-app name-of-react-app
+
+
+## Section 4
+State & why we need it
+
+Component data which may change over time
+
+TODOs
+
+Dropdown menu
