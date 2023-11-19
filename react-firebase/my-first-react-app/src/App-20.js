@@ -25,9 +25,9 @@ function App() {
       <h1>My name is {name}</h1>
       <button onClick = {handleClick}>Change name</button>
 
-      { events.map((event) => (
+      { events.map((event, index) => (
         <div key={event.id}>
-          <h2>{event.title}</h2>
+          <h2>{index} - {event.title}</h2>
         </div>
       )) }
     </div>
