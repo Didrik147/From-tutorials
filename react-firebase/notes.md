@@ -35,5 +35,12 @@ State & why we need it
 Component data which may change over time
 
 TODOs
-
 Dropdown menu
+
+index.js file is the entry point to the application.
+
+React evaluates our App component (runs the component function). Injects dynamic values.
+
+JSX Under The Hood
+
+Trggers the component to be re-evaluated when the state changes.
