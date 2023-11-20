@@ -44,3 +44,12 @@ React evaluates our App component (runs the component function). Injects dynamic
 JSX Under The Hood
 
 Trggers the component to be re-evaluated when the state changes.
+
+
+## Section 5
+
+Multiple components
+
+App (root component)
+
+Tree-like structure with App, Navbar, Menu etc. 
