@@ -3,19 +3,17 @@ import './App.css'
 import SingleCard from './components/SingleCard'
 
 const cardImages = [
-  { "src": "./img/anette.png" },
-  { "src": "./img/didrik147.png" },
-  { "src": "./img/teapot.png" },
-  { "src": "./img/pumpkin.png" },
-  { "src": "./img/bonfire.png" },
-  { "src": "./img/unicorn.png" },
+  { "src": "/img/helmet-1.png" },
+  { "src": "/img/potion-1.png" },
+  { "src": "/img/ring-1.png" },
+  { "src": "/img/scroll-1.png" },
+  { "src": "/img/shield-1.png" },
+  { "src": "/img/sword-1.png" },
 ]
 
 function App() {
   const [cards, setCards] = useState([])
   const [turns, setTurns] = useState(0)
-  const [choiceOne, setChoiceOne] = useState(null)
-  const [choiceTwo, setChoiceTwo] = useState(null)
 
   // shuffle cards for new game
   const shuffleCards = () => {
@@ -27,11 +25,7 @@ function App() {
     setTurns(0)
   }
 
-  // Handle a choice
-  const handleChoice = (card) => {
-    choiceOne ? setChoiceTwo(card) : setChoiceTwo(card)
-  }
-
+  console.log(cards, turns)
 
   return (
     <div className="App">
@@ -43,7 +37,6 @@ function App() {
           <SingleCard 
             key={card.id}
             card={card}
-            handleChoice={handleChoice}
           />
         ))}
       </div>
