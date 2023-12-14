@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/from-udemy/react-firebase/magic-memory/static/css/main.85544013.css",
+    "main.js": "/from-udemy/react-firebase/magic-memory/static/js/main.716417df.js",
+    "index.html": "/from-udemy/react-firebase/magic-memory/index.html",
+    "main.85544013.css.map": "/from-udemy/react-firebase/magic-memory/static/css/main.85544013.css.map",
+    "main.716417df.js.map": "/from-udemy/react-firebase/magic-memory/static/js/main.716417df.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.85544013.css",
+    "static/js/main.716417df.js"
+  ]
+}
