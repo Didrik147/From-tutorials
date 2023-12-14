@@ -1,14 +1,14 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import './App.css'
 import SingleCard from './components/SingleCard'
 
 const cardImages = [
-  { "src": "./img/anette.png" },
-  { "src": "./img/didrik147.png" },
-  { "src": "./img/teapot.png" },
-  { "src": "./img/pumpkin.png" },
-  { "src": "./img/bonfire.png" },
-  { "src": "./img/unicorn.png" },
+  { "src": "./img/anette.png", matched: false },
+  { "src": "./img/didrik147.png", matched: false },
+  { "src": "./img/teapot.png", matched: false },
+  { "src": "./img/pumpkin.png", matched: false },
+  { "src": "./img/bonfire.png", matched: false },
+  { "src": "./img/unicorn.png", matched: false },
 ]
 
 function App() {
@@ -29,7 +29,39 @@ function App() {
 
   // Handle a choice
   const handleChoice = (card) => {
-    choiceOne ? setChoiceTwo(card) : setChoiceTwo(card)
+    choiceOne ? setChoiceTwo(card) : setChoiceOne(card)
+  }
+
+  // Compare 2 selected cards
+  useEffect(() => {
+    if (choiceOne && choiceTwo) {
+
+      if (choiceOne.src === choiceTwo.src) {
+        setCards(prevCards => {
+          return prevCards.map(card => {
+            if (card.src === choiceOne.src){
+              return { ...card, matched: true }
+            }else {
+              return card
+            }
+          })
+        })
+        resetTurn()
+      } else {
+        // Currently at 7:54 in lesson 65  
+        resetTurn()
+      }
+
+    }
+  }, [choiceOne, choiceTwo])
+
+  console.log(cards)
+
+  // Reset choices & increase turn
+  const resetTurn = () => {
+    setChoiceOne(null)
+    setChoiceTwo(null)
+    setTurns(prevTurns => prevTurns + 1)
   }
 
 
@@ -44,6 +76,7 @@ function App() {
             key={card.id}
             card={card}
             handleChoice={handleChoice}
+            flipped={card === choiceOne || card === choiceTwo || card.matched}
           />
         ))}
       </div>
