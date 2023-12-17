@@ -1,6 +1,6 @@
 .trip-list {
   width: 480px;
-  margin: 60px auto;
+  margin: 20px auto;
 }
 .trip-list ul {
   padding: 0;
@@ -13,4 +13,14 @@
   border-radius: 4px;
   list-style-type: none;
   margin: 20px 0;
+}
+.trip-list .filters {
+  display: flex;
+  gap: 10px;
+}
+.trip-list button {
+  padding: 10px;
+  font-size: 16px;
+  flex-grow: 1;
+  cursor: pointer;
 }
