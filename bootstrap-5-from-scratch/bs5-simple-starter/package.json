@@ -1,0 +1,15 @@
+{
+  "name": "bs5-simple-starter",
+  "version": "1.0.0",
+  "description": "Starter template for Bootstrap websites",
+  "main": "index.js",
+  "scripts": {
+    "sass:build": "sass --no-source-map scss:css",
+    "sass:watch": "sass --no-source-map --watch scss:css"
+  },
+  "author": "Didrik Roest",
+  "license": "MIT",
+  "dependencies": {
+    "sass": "^1.80.6"
+  }
+}
