@@ -6,3 +6,13 @@
   background: url(../images/header-background.jpg) center center no-repeat;
   background-size: cover;
 }
+
+@media (max-width: 1000px) {
+  .hero .image-container {
+    display: flex;
+    justify-content: center;
+  }
+  .hero .text-container {
+    text-align: center;
+  }
+}
